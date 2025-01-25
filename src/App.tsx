@@ -30,6 +30,14 @@ const App: FC = () => {
         setDeadline(0);
     }
 
+    function removeTask(taskKeyToRemove: number): void {
+        setTodoList(
+            todoList.filter((_, key) =>
+                key !== taskKeyToRemove
+            )
+        );
+    }
+
     return (
         <div className="App">
             <div className="header">
@@ -53,7 +61,7 @@ const App: FC = () => {
             </div>
             <div className="todoList">
                 {todoList.map((task: ITask, key: number) => {
-                    return <TodoTask key={key} task={task}/>;
+                    return <TodoTask key={key} taskKey={key} task={task} removeTask={removeTask}/>;
                 })}
             </div>
         </div>
